@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OctoPerf.PetStore.Automation.Framework", "OctoPerf.PetStore.Automation.Framework.csproj", "{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OctoPerf.PetStore.Automation.Tests.UI", "..\OctoPerf.PetStore.Automation.Tests.UI\OctoPerf.PetStore.Automation.Tests.UI.csproj", "{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A} = {BFE12644-543B-43DB-93D2-48FCD8EDDF0A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Dev|Any CPU = Dev|Any CPU
+		Prod|Any CPU = Prod|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SIT|Any CPU = SIT|Any CPU
+		UAT|Any CPU = UAT|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Dev|Any CPU.Build.0 = Dev|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Prod|Any CPU.ActiveCfg = Dev|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Prod|Any CPU.Build.0 = Dev|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Release|Any CPU.ActiveCfg = Dev|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.Release|Any CPU.Build.0 = Dev|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.SIT|Any CPU.ActiveCfg = SIT|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.SIT|Any CPU.Build.0 = SIT|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.UAT|Any CPU.ActiveCfg = UAT|Any CPU
+		{BFE12644-543B-43DB-93D2-48FCD8EDDF0A}.UAT|Any CPU.Build.0 = UAT|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Dev|Any CPU.Build.0 = Dev|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Prod|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Prod|Any CPU.Build.0 = Debug|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.SIT|Any CPU.ActiveCfg = SIT|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.SIT|Any CPU.Build.0 = SIT|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.UAT|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3DD611-1ECF-460D-A57E-2EF57C19F9D7}.UAT|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C38C519D-A581-4AD5-AACC-6FA2B9D308A4}
+	EndGlobalSection
+EndGlobal

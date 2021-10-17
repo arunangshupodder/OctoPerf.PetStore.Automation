@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+	<RunConfiguration>
+		<TargetPlatform>x86</TargetPlatform>
+		<TreatNoTestsAsError>true</TreatNoTestsAsError>
+		<!-- For disabling default TestResults from getting created -->
+		<ResultsDirectory>%temp%\TestResults</ResultsDirectory>
+	</RunConfiguration>
+	<TestRunParameters>
+	</TestRunParameters>
+</RunSettings>
