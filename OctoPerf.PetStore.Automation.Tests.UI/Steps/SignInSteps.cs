@@ -1,33 +1,17 @@
 ﻿using OctoPerf.PetStore.Automation.Framework.Objects;
-using OctoPerf.PetStore.Automation.Framework.Page.Objects;
-using OctoPerf.PetStore.Automation.Framework.Utilities;
-using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
-using static OctoPerf.PetStore.Automation.Framework.Page.Objects.Login;
 
 namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
 {
     [Binding]
-    public sealed class SignInSteps
+    public sealed class SignInSteps : CommonSteps
     {
-        protected readonly FeatureContext _featureContext;
-        protected readonly ScenarioContext _scenarioContext;
-        protected readonly SignInPage _signInPage;
-        protected readonly UserRegistrationPage _regnPage;
-        protected readonly HomePage _homePage;
-
         public SignInSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
-        {
-            this._featureContext = featureContext;
-            this._scenarioContext = scenarioContext;
-            this._signInPage = new SignInPage(DriverManager.Driver);
-            this._homePage = new HomePage(DriverManager.Driver);
-            this._regnPage = new UserRegistrationPage(DriverManager.Driver);
-        }
+            : base(featureContext, scenarioContext) { }
 
         [Given("I login to application as (.*) user")]
         [When("I login to application as (.*) user")]

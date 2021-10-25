@@ -9,18 +9,10 @@ using TechTalk.SpecFlow;
 namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
 {
     [Binding]
-    public sealed class HomePageSteps
+    public sealed class HomePageSteps : CommonSteps
     {
-        private readonly FeatureContext _featureContext;
-        private readonly ScenarioContext _scenarioContext;
-        private readonly HomePage _homePage;
-
         public HomePageSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
-        {
-            this._featureContext = featureContext;
-            this._scenarioContext = scenarioContext;
-            this._homePage = new HomePage(DriverManager.Driver);
-        }
+            : base(featureContext, scenarioContext) { }
 
         [Then("I land on the home page of the application")]
         public void ThenILandOnTheHomePage()

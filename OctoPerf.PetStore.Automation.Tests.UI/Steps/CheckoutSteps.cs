@@ -10,20 +10,10 @@ using TechTalk.SpecFlow;
 namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
 {
     [Binding]
-    public sealed class CheckoutSteps
+    public sealed class CheckoutSteps : CommonSteps
     {
-        private readonly FeatureContext _featureContext;
-        private readonly ScenarioContext _scenarioContext;
-        private readonly HomePage _homePage;
-        private readonly CheckoutPage _checkoutPage;
-
         public CheckoutSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
-        {
-            this._featureContext = featureContext;
-            this._scenarioContext = scenarioContext;
-            this._homePage = new HomePage(DriverManager.Driver);
-            this._checkoutPage = new CheckoutPage(DriverManager.Driver);
-        }
+            : base(featureContext, scenarioContext) { }
 
         [When("I add pet to cart")]
         public void WhenIAddPetToCart(Table dataTable)
