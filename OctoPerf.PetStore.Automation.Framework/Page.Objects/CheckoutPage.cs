@@ -22,19 +22,18 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
 
         public void HandleUserLoginAndContinue()
         {
-            IsElementDisplayed(_continue).Should().BeTrue("Continue button should be displayed.");
+            AssertTrue(IsElementDisplayed(_continue), "Continue button should be displayed.");
             Click(_continue);
         }
 
         public void ConfirmOrder(bool validateOrder=true, User user=null)
         {
-            IsElementDisplayed(_confirm).Should().BeTrue("Confirm button should be displayed.");
+            AssertTrue(IsElementDisplayed(_confirm), "Confirm button should be displayed.");
             Click(_confirm);
-
-            IsElementDisplayed(_orderConfirmationMessage, TimeSpan.FromSeconds(Constants.WAIT_MEDIUM))
-                .Should().BeTrue("Order Confirmation Message not displayed on page.");
-            IsElementDisplayed(_orderNumber).Should().BeTrue("Order Number is not displayed on page.");
-            LogInfo("Order placed successfully.");
+            AssertTrue(IsElementDisplayed(_orderConfirmationMessage, TimeSpan.FromSeconds(Constants.WAIT_MEDIUM)),
+                "Order Confirmation Message not displayed on page.");
+            AssertTrue(IsElementDisplayed(_orderNumber), "Order Number is not displayed on page.", 
+                "Order placed successfully.");
 
             if (validateOrder) ValidateOrderDetails(user);
         }
@@ -59,8 +58,7 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
                         "Zip Code is not matching");
             ValidateResult(user.Country, GetElement(By.XPath(string.Format(ORDER_DETAIL_FIELD, "Country"))).Text,
                         "Country is not matching");
-            Validate();
-            LogInfo("Order validated successfully.");
+            Validate("Order validated successfully.");
 
             return orderNumber;
         }
