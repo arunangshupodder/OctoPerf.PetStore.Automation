@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TechTalk.SpecFlow;
 
 namespace OctoPerf.PetStore.Automation.Framework.Utilities
 {
@@ -11,6 +12,10 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
         private const string alphaChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string numericChars = "0123456789";
         private const string alphanumericChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        [ThreadStatic]
+        public static string[] CurrentTags;
+
         public static string GetRandomAlphaNumericString(int length)
         {
             return new string(Enumerable.Repeat(alphanumericChars, length)

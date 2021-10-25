@@ -111,11 +111,15 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Verfiy the checkout feature of JPetStore")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UITests")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("SmokeTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RegressionTest")]
         public virtual void CheckoutANewPetAsAnExistingCustomer()
         {
             string[] tagsOfScenario = new string[] {
                     "UITests",
-                    "Chrome"};
+                    "Chrome",
+                    "SmokeTest",
+                    "RegressionTest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checkout a new pet as an existing customer", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 9
@@ -147,6 +151,24 @@ this.FeatureBackground();
 #line 11
  testRunner.And("I login to application as existing user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Category_Id",
+                            "Product_Id",
+                            "Item_Id"});
+                table1.AddRow(new string[] {
+                            "FISH",
+                            "FI-SW-01",
+                            "EST-1"});
+                table1.AddRow(new string[] {
+                            "DOGS",
+                            "K9-BD-01",
+                            "EST-6"});
+#line 12
+ testRunner.When("I add pet to cart", ((string)(null)), table1, "When ");
+#line hidden
+#line 16
+ testRunner.Then("I should be able to perform checkout with given cart content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -156,11 +178,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Verfiy the checkout feature of JPetStore")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UITests")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RegressionTest")]
         public virtual void CheckoutANewPetAsANewCustomer()
         {
             string[] tagsOfScenario = new string[] {
                     "UITests",
-                    "Chrome"};
+                    "Chrome",
+                    "RegressionTest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checkout a new pet as a new customer", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 19
@@ -191,6 +215,24 @@ this.FeatureBackground();
 #line hidden
 #line 21
     testRunner.And("I login to application as new user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Category_Id",
+                            "Product_Id",
+                            "Item_Id"});
+                table2.AddRow(new string[] {
+                            "FISH",
+                            "FI-SW-01",
+                            "EST-1"});
+                table2.AddRow(new string[] {
+                            "DOGS",
+                            "K9-BD-01",
+                            "EST-6"});
+#line 22
+ testRunner.When("I add pet to cart", ((string)(null)), table2, "When ");
+#line hidden
+#line 26
+ testRunner.Then("I should be able to perform checkout with given cart content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

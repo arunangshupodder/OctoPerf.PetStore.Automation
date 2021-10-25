@@ -12,6 +12,8 @@ namespace OctoPerf.PetStore.Automation.Framework.Data
             public static readonly int WAIT_LOW = 5;
             public static readonly int WAIT_MEDIUM = 10;
             public static readonly int WAIT_HIGH = 15;
+            public static readonly string CURRENCY_REGEX = @"[^0-9.,]+";
+            public static readonly string EMPTY = "";
         }
     }
 }

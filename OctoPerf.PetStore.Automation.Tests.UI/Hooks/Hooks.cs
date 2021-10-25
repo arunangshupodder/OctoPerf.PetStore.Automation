@@ -1,7 +1,6 @@
 ﻿using BoDi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OctoPerf.PetStore.Automation.Framework.Utilities;
-using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +59,13 @@ namespace Octoperf.PetStore.Automation.UI.Tests.Hooks
         [BeforeScenario("UITests")]
         public void TestSetup()
         {
-            //_scenarioContext.ScenarioInfo.Tags.Contains("Chrome")
+            TestHelper.CurrentTags = this._scenarioContext.ScenarioInfo.Tags;
+
+            if (TestHelper.CurrentTags.Contains("Ignore"))
+            {
+                Assert.Inconclusive($"Scenario: '{this._scenarioContext.ScenarioInfo.Title}' is ignored.");
+            }
+
             if (Config.GetConfigData("Browser").ToLower().Contains("chrome"))
             {
                 DriverManager.InitiateDriver(BrowserType.Chrome);

@@ -18,6 +18,7 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
         public void VerifyLandingPageIsLaunched()
         {
             IsElementDisplayed(welcomeBanner).Should().BeTrue("Welcome Banner should be displayed.");
+            LogInfo("Landing Page is launched successfully.");
         }
 
         public void ClickEnterStoreLink()

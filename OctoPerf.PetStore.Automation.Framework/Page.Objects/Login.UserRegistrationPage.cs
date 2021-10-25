@@ -49,8 +49,16 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
                 return user;
             }
 
+            public void ValidateNavigationToSignInPage()
+            {
+                IsElementDisplayed(_saveInfoButton).Should().BeTrue("User not navigated to Registration page");
+                LogInfo("User successfully navigated to Registration Page");
+            }
+
             public User RegisterNewUser()
             {
+                ValidateNavigationToSignInPage();
+
                 User user = CreateNewUser();
 
                 IsElementDisplayed(_userId).Should().BeTrue("User Id field should be displayed.");
@@ -84,6 +92,8 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
 
                 IsElementClickable(_saveInfoButton).Should().BeTrue("Save Information button should be displayed.");
                 Click(_saveInfoButton);
+
+                LogInfo("New user successfully registered");
 
                 return user;
             }

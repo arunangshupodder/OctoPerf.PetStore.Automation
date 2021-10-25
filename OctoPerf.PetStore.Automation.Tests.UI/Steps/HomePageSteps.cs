@@ -13,25 +13,25 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
     {
         private readonly FeatureContext _featureContext;
         private readonly ScenarioContext _scenarioContext;
+        private readonly HomePage _homePage;
 
         public HomePageSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
         {
             this._featureContext = featureContext;
             this._scenarioContext = scenarioContext;
+            this._homePage = new HomePage(DriverManager.Driver);
         }
 
         [Then("I land on the home page of the application")]
         public void ThenILandOnTheHomePage()
         {
-            HomePage homePage = new HomePage(DriverManager.Driver);
-            homePage.VerifyNavigationToHomePage();
-            _scenarioContext["homePage"] = homePage;
+            _homePage.VerifyNavigationToHomePage();
         }
 
         [Given("I click on Sign In")]
         public void GivenIClickOnSignIn()
         {
-            ((HomePage)_scenarioContext["homePage"]).ClickOnSignIn();
+            _homePage.ClickOnSignIn();
         }
     }
 }

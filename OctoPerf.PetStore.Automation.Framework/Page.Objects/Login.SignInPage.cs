@@ -16,6 +16,7 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
         {
             private By _registerNowLink = By.XPath("//a[contains(text(), 'Register Now')]");
             private By _signInPageMessage = By.XPath("//p[text()='Please enter your username and password.']");
+            private By _signInFailedMessage = By.CssSelector("div#Content ul.messages li");
             private By _username = By.Name("username");
             private By _password = By.Name("password");
             private By _signInButton = By.Name("signon");
@@ -46,6 +47,7 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
             {
                 (DoesURLContainPath(URL) && IsElementDisplayed(_signInPageMessage))
                     .Should().BeTrue("User should be navigated to Sign In page.");
+                LogInfo("User successfully navigated to sign in page.");
             }
 
             public void NavigateToUserRegistrationPage()
@@ -64,6 +66,9 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
                 EnterText(_password, user.Password);
                 IsElementClickable(_signInButton).Should().BeTrue("Sign In button should be displayed.");
                 Click(_signInButton);
+
+                IsElementDisplayed(_signInFailedMessage).Should().BeFalse("User Sign In failed.");
+                LogInfo("User sign in successful");
 
                 return user;
             }

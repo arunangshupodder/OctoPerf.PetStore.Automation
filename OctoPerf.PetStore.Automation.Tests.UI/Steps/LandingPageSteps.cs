@@ -15,26 +15,25 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
     {
         private readonly FeatureContext _featureContext;
         private readonly ScenarioContext _scenarioContext;
+        private readonly LandingPage _landingPage;
 
         public LandingPageSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
         {
             this._featureContext = featureContext;
             this._scenarioContext = scenarioContext;
+            this._landingPage = new LandingPage(DriverManager.Driver);
         }
 
         [Given("Application is launched")]
         public void GivenApplicationIsLaunched()
         {
-            LandingPage landingPage = new LandingPage(DriverManager.Driver);
-            landingPage.VerifyLandingPageIsLaunched();
-            _scenarioContext["landingPage"] = landingPage;
+            _landingPage.VerifyLandingPageIsLaunched();
         }
 
         [When("I click on Enter the Store link")]
         public void WhenIClickOnEnterTheStoreLink()
         {
-            LandingPage landingPage = (LandingPage)_scenarioContext["landingPage"];
-            landingPage.ClickEnterStoreLink();
+            _landingPage.ClickEnterStoreLink();
         }
     }
 }

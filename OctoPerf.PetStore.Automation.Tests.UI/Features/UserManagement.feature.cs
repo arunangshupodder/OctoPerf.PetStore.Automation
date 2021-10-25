@@ -111,11 +111,15 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Verfiy the user management feature of JPetStore")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UITests")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("SmokeTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RegressionTest")]
         public virtual void RegisterANewUserInTheApplication()
         {
             string[] tagsOfScenario = new string[] {
                     "UITests",
-                    "Chrome"};
+                    "Chrome",
+                    "SmokeTest",
+                    "RegressionTest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register a new user in the application", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 9
@@ -146,6 +150,12 @@ this.FeatureBackground();
 #line hidden
 #line 11
     testRunner.When("I register a new user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("I should be navigated to Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And("I should be able to login to application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
