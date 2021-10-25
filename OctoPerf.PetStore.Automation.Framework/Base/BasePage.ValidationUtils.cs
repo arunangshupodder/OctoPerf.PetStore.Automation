@@ -21,18 +21,6 @@ namespace OctoPerf.PetStore.Automation.Framework.Base
             }
         }
 
-        public string AssertMessage
-        {
-            get
-            {
-                return _assertMessage;
-            }
-            set
-            {
-                _assertMessage = value;
-            }
-        }
-
         public void ValidateResult(object expected, object actual, string message, ValidateConditions validateConditions = ValidateConditions.Equals)
         {
             switch (validateConditions)
@@ -41,37 +29,45 @@ namespace OctoPerf.PetStore.Automation.Framework.Base
                     if (!expected.Equals(actual))
                     {
                         AssertList.Add($"Expected: { expected}, Actual: {actual}, Operation: {validateConditions}, {message}");
-                        AssertMessage = AssertMessage + System.Environment.NewLine + message;
                     }
                     break;
                 case ValidateConditions.NotEquals:
                     if (expected.Equals(actual))
                     {
                         AssertList.Add($"Expected: { expected}, Actual: {actual}, Operation: {validateConditions}, {message}");
-                        AssertMessage = AssertMessage + System.Environment.NewLine + message;
                     }
                     break;
                 case ValidateConditions.Contains:
                     if (!expected.Equals(actual))
                     {
                         AssertList.Add($"Expected: { expected}, Actual: {actual}, Operation: {validateConditions}, {message}");
-                        AssertMessage = AssertMessage + System.Environment.NewLine + message;
                     }
                     break;
                 case ValidateConditions.NotContains:
                     if (expected.Equals(actual))
                     {
                         AssertList.Add($"Expected: { expected}, Actual: {actual}, Operation: {validateConditions}, {message}");
-                        AssertMessage = AssertMessage + System.Environment.NewLine + message;
                     }
                     break;
             }
-            LogInfo($"Expected: { expected}, Actual: {actual}, Operation: {validateConditions}, {message}");
         }
 
-        public void Validate()
+        public void Validate(string successMessage = "")
         {
-            AssertList.Count.Should().Be(0, AssertMessage);
+            AssertList.Count.Should().Be(0, string.Join("\n", AssertList));
+            if (!string.IsNullOrEmpty(successMessage)) LogInfo(successMessage);
+        }
+
+        public void AssertTrue(bool validationObject, string failureMessage, string successMessage = "")
+        {
+            validationObject.Should().BeTrue(failureMessage);
+            if (!string.IsNullOrEmpty(successMessage)) LogInfo(successMessage);
+        }
+
+        public void AssertFalse(bool validationObject, string failureMessage, string successMessage = "")
+        {
+            validationObject.Should().BeFalse(failureMessage);
+            if (!string.IsNullOrEmpty(successMessage)) LogInfo(successMessage);
         }
     }
 }

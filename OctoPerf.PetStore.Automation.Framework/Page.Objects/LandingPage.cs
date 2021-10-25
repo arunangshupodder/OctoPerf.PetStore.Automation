@@ -17,13 +17,13 @@ namespace OctoPerf.PetStore.Automation.Framework.Page.Objects
 
         public void VerifyLandingPageIsLaunched()
         {
-            IsElementDisplayed(welcomeBanner).Should().BeTrue("Welcome Banner should be displayed.");
-            LogInfo("Landing Page is launched successfully.");
+            AssertTrue(IsElementDisplayed(welcomeBanner), "Welcome Banner should be displayed.",
+                "Landing Page is launched successfully.");
         }
 
         public void ClickEnterStoreLink()
         {
-            IsElementClickable(enterStoreLink).Should().BeTrue("Enter Store link should be displayed and clickable.");
+            AssertTrue(IsElementClickable(enterStoreLink), "Enter Store link should be displayed and clickable.");
             Click(enterStoreLink);
         }
     }
