@@ -40,7 +40,7 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
             return Driver;
         }
 
-        public static void CloseDriver()
+        public static RemoteWebDriver CloseDriver()
         {
             if (Driver != null)
             {
@@ -48,14 +48,16 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
                 Driver.Quit();
                 Driver = null;
             }
+            return Driver;
         }
 
-        public static void CloseBrowser()
+        public static RemoteWebDriver CloseBrowser()
         {
             if (Driver != null)
             {
                 Driver.Close();
             }
+            return Driver;
         }
 
         private static RemoteWebDriver CreateChromeDriver()

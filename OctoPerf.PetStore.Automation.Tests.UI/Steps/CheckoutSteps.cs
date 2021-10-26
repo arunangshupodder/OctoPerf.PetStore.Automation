@@ -1,6 +1,7 @@
 ﻿using OctoPerf.PetStore.Automation.Framework.Objects;
 using OctoPerf.PetStore.Automation.Framework.Page.Objects;
 using OctoPerf.PetStore.Automation.Framework.Utilities;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
     [Binding]
     public sealed class CheckoutSteps : CommonSteps
     {
-        public CheckoutSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
-            : base(featureContext, scenarioContext) { }
+        public CheckoutSteps(FeatureContext featureContext, ScenarioContext scenarioContext, IWebDriver driver)
+            : base(featureContext, scenarioContext, driver) { }
 
         [When("I add pet to cart")]
         public void WhenIAddPetToCart(Table dataTable)

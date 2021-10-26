@@ -1,5 +1,6 @@
 ﻿using OctoPerf.PetStore.Automation.Framework.Page.Objects;
 using OctoPerf.PetStore.Automation.Framework.Utilities;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
     [Binding]
     public sealed class HomePageSteps : CommonSteps
     {
-        public HomePageSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
-            : base(featureContext, scenarioContext) { }
+        public HomePageSteps(FeatureContext featureContext, ScenarioContext scenarioContext, IWebDriver driver)
+            : base(featureContext, scenarioContext, driver) { }
 
         [Then("I land on the home page of the application")]
         public void ThenILandOnTheHomePage()

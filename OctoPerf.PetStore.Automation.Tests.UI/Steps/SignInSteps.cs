@@ -1,4 +1,5 @@
 ﻿using OctoPerf.PetStore.Automation.Framework.Objects;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
     [Binding]
     public sealed class SignInSteps : CommonSteps
     {
-        public SignInSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
-            : base(featureContext, scenarioContext) { }
+        public SignInSteps(FeatureContext featureContext, ScenarioContext scenarioContext, IWebDriver driver)
+            : base(featureContext, scenarioContext, driver) { }
 
         [Given("I login to application as (.*) user")]
         [When("I login to application as (.*) user")]
