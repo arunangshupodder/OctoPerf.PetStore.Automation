@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
@@ -23,15 +25,18 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
             }
         }
 
-        public static RemoteWebDriver InitiateDriver(BrowserType browserType)
+        public static RemoteWebDriver InitiateDriver(BrowserType browserType, bool isHeadlessEnabled=false)
         {
             switch (browserType)
             {
                 case BrowserType.Chrome:
-                    Driver = CreateChromeDriver();
+                    Driver = CreateChromeDriver(isHeadlessEnabled);
                     break;
                 case BrowserType.Firefox:
-                    Driver = CreateFirefoxDriver();
+                    Driver = CreateFirefoxDriver(isHeadlessEnabled);
+                    break;
+                case BrowserType.IE:
+                    Driver = CreateIEDriver();
                     break;
                 default:
                     throw new InvalidOperationException($"Browser {browserType} is not currently supported by the framework.");
@@ -60,24 +65,42 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
             return Driver;
         }
 
-        private static RemoteWebDriver CreateChromeDriver()
+        private static RemoteWebDriver CreateChromeDriver(bool isHeadlessEnabled)
         {
-            RemoteWebDriver webDriver = null;
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--start-maximized");
             options.AddArgument("--ignore-certificate-errors");
             options.AddArgument("--disable-popup-blocking");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--incognito");
+            if (isHeadlessEnabled) options.AddArgument("--headless");
 
-            webDriver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options);
+            RemoteWebDriver webDriver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options);
 
             return webDriver;
         }
 
-        private static RemoteWebDriver CreateFirefoxDriver()
+        private static RemoteWebDriver CreateFirefoxDriver(bool isHeadlessEnabled)
         {
-            return null;
+            FirefoxOptions options = new FirefoxOptions();
+            options.AddArgument("--start-maximized");
+            options.AddArgument("--ignore-certificate-errors");
+            options.AddArgument("--disable-popup-blocking");
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--incognito");
+            if (isHeadlessEnabled)  options.AddArguments("--headless");
+
+            RemoteWebDriver webDriver = new FirefoxDriver(FirefoxDriverService.CreateDefaultService(), options);
+            return webDriver;
+        }
+
+        private static RemoteWebDriver CreateIEDriver()
+        {
+            InternetExplorerOptions options = new InternetExplorerOptions();
+            options.IgnoreZoomLevel = true;
+
+            RemoteWebDriver webDriver = new InternetExplorerDriver(InternetExplorerDriverService.CreateDefaultService(), options);
+            return webDriver;
         }
     }
 }

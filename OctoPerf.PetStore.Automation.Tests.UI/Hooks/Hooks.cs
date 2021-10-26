@@ -1,4 +1,5 @@
-﻿using BoDi;
+﻿using AventStack.ExtentReports;
+using BoDi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OctoPerf.PetStore.Automation.Framework.Utilities;
 using OpenQA.Selenium;
@@ -66,16 +67,20 @@ namespace Octoperf.PetStore.Automation.UI.Tests.Hooks
 
             if (TestHelper.CurrentTags.Contains("Ignore"))
             {
+                ReportManager.LogStepDetails($"Scenario: '{this._scenarioContext.ScenarioInfo.Title}' is ignored.", 
+                    status: Status.Skip);
                 Assert.Inconclusive($"Scenario: '{this._scenarioContext.ScenarioInfo.Title}' is ignored.");
             }
 
-            if (Config.GetConfigData("Browser").ToLower().Contains("chrome"))
+            if (Enum.TryParse(Config.GetConfigData("Browser"), true, out BrowserType browserType) && 
+                Boolean.TryParse(Config.GetConfigData("Headless").ToLower(), out bool isHeadlessEnabled))
             {
-                this.Driver = DriverManager.InitiateDriver(BrowserType.Chrome);
-            } 
-            else if (Config.GetConfigData("Browser").ToLower().Contains("firefox"))
+                this.Driver = DriverManager.InitiateDriver(browserType, isHeadlessEnabled);
+            }
+             else
             {
-                this.Driver = DriverManager.InitiateDriver(BrowserType.Firefox);
+                ReportManager.LogStepDetails("Incomptible Browser type selected.", status: Status.Fail);
+                Assert.Fail("Incomptible Browser type selected.");
             }
 
             _objectContainer.RegisterInstanceAs(this.Driver);

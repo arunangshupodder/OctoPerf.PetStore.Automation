@@ -14,7 +14,6 @@ namespace OctoPerf.PetStore.Automation.Framework.Base
         private DefaultWait<IWebDriver> _fluentWait;
         private IJavaScriptExecutor _jsExecutor;
         private static List<string> _assertList;
-        private string _assertMessage;
 
         public BasePage(IWebDriver driver)
         {

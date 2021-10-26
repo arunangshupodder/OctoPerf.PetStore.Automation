@@ -104,7 +104,9 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
                 var status = scenarioContext.TestError != null ? Status.Fail : Status.Pass;
                 var resultFiles = new Dictionary<string, string>();
                 string[] excludeExceptions = { "Unable to connect to the remote server", 
-                                               "No connection could be made because the target machine actively refused it" };
+                                               "No connection could be made because the target machine actively refused it",
+                                               "An existing connection was forcibly closed by the remote host",
+                                               "An error occurred while sending the request" };
                 switch (status)
                 {
                     case Status.Fail:
