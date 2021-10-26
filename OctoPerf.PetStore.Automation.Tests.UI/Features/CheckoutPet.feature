@@ -5,7 +5,7 @@ Background:
 	When I click on Enter the Store link
 	Then I land on the home page of the application
 
-@UITests @Chrome @SmokeTest @RegressionTest
+@UITests @SmokeTest @RegressionTest
 Scenario: Checkout a new pet as an existing customer
 	Given I click on Sign In 
 	And I login to application as existing user
@@ -15,7 +15,7 @@ Scenario: Checkout a new pet as an existing customer
 	| DOGS        | K9-BD-01   | EST-6   |
 	Then I should be able to perform checkout with given cart content
 
-@UITests @Chrome @RegressionTest
+@UITests @RegressionTest
 Scenario: Checkout a new pet as a new customer
 	Given I click on Sign In 
     And  I login to application as new user

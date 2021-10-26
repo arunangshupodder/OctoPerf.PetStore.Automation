@@ -110,14 +110,12 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Checkout a new pet as an existing customer")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Verfiy the checkout feature of JPetStore")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UITests")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("SmokeTest")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RegressionTest")]
         public virtual void CheckoutANewPetAsAnExistingCustomer()
         {
             string[] tagsOfScenario = new string[] {
                     "UITests",
-                    "Chrome",
                     "SmokeTest",
                     "RegressionTest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -177,13 +175,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Checkout a new pet as a new customer")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Verfiy the checkout feature of JPetStore")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UITests")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RegressionTest")]
         public virtual void CheckoutANewPetAsANewCustomer()
         {
             string[] tagsOfScenario = new string[] {
                     "UITests",
-                    "Chrome",
                     "RegressionTest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checkout a new pet as a new customer", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

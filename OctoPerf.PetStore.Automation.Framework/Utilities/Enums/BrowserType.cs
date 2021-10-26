@@ -6,7 +6,8 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
 {
     public enum BrowserType
     {
-        Chrome = 0,
-        Firefox = 1
+        Chrome,
+        Firefox,
+        IE
     }
 }

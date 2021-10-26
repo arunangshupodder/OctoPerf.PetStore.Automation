@@ -5,7 +5,7 @@ Background:
 	When I click on Enter the Store link
 	Then I land on the home page of the application
 
-@UITests @Chrome @SmokeTest @RegressionTest
+@UITests @SmokeTest @RegressionTest
 Scenario: Register a new user in the application
 	Given I click on Sign In 
     When  I register a new user

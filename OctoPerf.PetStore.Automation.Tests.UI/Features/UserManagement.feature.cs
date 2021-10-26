@@ -110,14 +110,12 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Register a new user in the application")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Verfiy the user management feature of JPetStore")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UITests")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("SmokeTest")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RegressionTest")]
         public virtual void RegisterANewUserInTheApplication()
         {
             string[] tagsOfScenario = new string[] {
                     "UITests",
-                    "Chrome",
                     "SmokeTest",
                     "RegressionTest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
