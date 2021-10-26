@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,8 @@ namespace OctoPerf.PetStore.Automation.Tests.UI.Steps
     [Binding]
     public class LandingPageSteps : CommonSteps
     {
-        public LandingPageSteps(FeatureContext featureContext, ScenarioContext scenarioContext) 
-            : base(featureContext, scenarioContext) { }
+        public LandingPageSteps(FeatureContext featureContext, ScenarioContext scenarioContext, IWebDriver driver) 
+            : base(featureContext, scenarioContext, driver) { }
 
         [Given("Application is launched")]
         public void GivenApplicationIsLaunched()
