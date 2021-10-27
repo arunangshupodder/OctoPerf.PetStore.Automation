@@ -1,12 +1,15 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using log4net;
+using log4net.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -17,7 +20,7 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
         private static readonly Lazy<AventStack.ExtentReports.ExtentReports> _extentReport = new Lazy<AventStack.ExtentReports.ExtentReports>();
         private static readonly object lockObj = new object();
         private static readonly object resultLockObj = new object();
-        
+
         private static readonly string ReportingDirectory = $@"{Directory.GetCurrentDirectory()}\Reports";
         private static readonly string ScreenshotsFolder = $@"{ReportingDirectory}\Screenshots";
         private static readonly string IndexReportFilePath = $@"{ReportingDirectory}\AutomationReport.html";
@@ -37,6 +40,13 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
         [ThreadStatic]
         public static ScenarioContext CurrentScenarioContext;
 
+        [ThreadStatic]
+        private static ILog Logger;
+
+        [ThreadStatic]
+        private static ILoggerRepository Repository;
+
+
         public static void InitializeReport()
         {
             if (!Directory.Exists(ReportingDirectory)) Directory.CreateDirectory(ReportingDirectory);
@@ -47,12 +57,33 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
             Global_Extent.AttachReporter(htmlReporter);
         }
 
+        public static void SetLogger(FeatureContext featureContext, ScenarioContext scenarioContext=null)
+        {
+            lock (lockObj)
+            {
+                if (scenarioContext == null)
+                {
+                    Logger = LogManager.GetLogger($"{featureContext.FeatureInfo.Title},-,-");
+                }
+                else
+                {
+                    Logger = LogManager.GetLogger($"{featureContext.FeatureInfo.Title},{scenarioContext.ScenarioInfo.Title},{scenarioContext.StepContext.StepInfo.Text}");
+                }
+                
+            }   
+        }
+
         public static void CreateCurrentFeature(FeatureContext featureContext)
         {
             lock (lockObj)
             {
                 featureContext["Feature"] = Global_Extent.CreateTest<Feature>("Feature: " + featureContext.FeatureInfo.Title);
                 CurrentFeatureContext = featureContext;
+
+                SetLogger(featureContext);
+                Repository = log4net.LogManager.GetRepository(Assembly.GetCallingAssembly());
+                var fileInfo = new FileInfo(@"Logger.config");
+                log4net.Config.XmlConfigurator.Configure(Repository, fileInfo);
             }
         }
 
@@ -60,7 +91,8 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
         {
             lock (lockObj)
             {
-                scenarioContext["Scenario"] = CurrentFeatureContext.Get<ExtentTest>("Feature").CreateNode<Scenario>($"Scenario :: {scenarioContext.ScenarioInfo.Title}");
+                scenarioContext["Scenario"] = CurrentFeatureContext.Get<ExtentTest>("Feature")
+                    .CreateNode<Scenario>($"Scenario :: {scenarioContext.ScenarioInfo.Title}");
                 CurrentScenarioContext = scenarioContext;
                 ReportManager.ScreenCapture = null;
             }
@@ -70,7 +102,7 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
         {
             // create dynamic step name
             var stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
-            switch(stepType)
+            switch (stepType)
             {
                 case "Given":
                     scenarioContext["CurrentStep"] = scenarioContext.Get<ExtentTest>("Scenario")
@@ -137,15 +169,34 @@ namespace OctoPerf.PetStore.Automation.Framework.Utilities
             LogStepDetails(details, status, CurrentScenarioContext.Get<ExtentTest>("CurrentStep"));
         }
 
-        private static void LogStepDetails(string details, Status status = Status.Pass, params ExtentTest[] currentSteps)
+        private static void LogStepDetails(string details, Status status, params ExtentTest[] currentSteps)
         {
             lock (lockObj)
             {
                 foreach (var currentStep in currentSteps)
                 {
+                    Log($"{details}", status);
                     currentStep.Log(status, $"[{DateTime.Now.ToString("F")}] ==> {details}");
                     CurrentTestContext.WriteLine($"[{DateTime.Now.ToString("F")}] ==> {details}");
                 }
+            }
+        }
+
+        private static void Log(string details, Status status)
+        {
+            switch(status)
+            {
+                case Status.Fail:
+                case Status.Error:
+                    Logger.Error(details);
+                    break;
+                case Status.Skip:
+                    Logger.Warn(details);
+                    break;
+                case Status.Pass:
+                default:
+                    Logger.Info(details);
+                    break;
             }
         }
 

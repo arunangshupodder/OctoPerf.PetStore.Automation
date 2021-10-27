@@ -23,6 +23,9 @@ namespace Octoperf.PetStore.Automation.UI.Tests.Hooks
         private ScenarioContext _scenarioContext;
 
         [ThreadStatic]
+        private static FeatureContext _featureContext;
+
+        [ThreadStatic]
         private static TestContext _testContext;
 
         public TestContext CurrentTestContext
@@ -57,6 +60,7 @@ namespace Octoperf.PetStore.Automation.UI.Tests.Hooks
         [BeforeFeature]
         public static void FeatureSetup(FeatureContext featureContext)
         {
+            _featureContext = featureContext;
             ReportManager.CreateCurrentFeature(featureContext);
         }
 
@@ -94,6 +98,7 @@ namespace Octoperf.PetStore.Automation.UI.Tests.Hooks
         [BeforeStep]
         public void StepSetup()
         {
+            ReportManager.SetLogger(_featureContext, this._scenarioContext);
             ReportManager.CreateCurrentScenarioStep(this._scenarioContext);
         }
 
